@@ -1,36 +1,11 @@
 "use client"
 
-import { ArrowRight, Code, Database, Globe, Mail, Phone, Users } from "lucide-react"
+import { Code, Database, Globe, Mail, Users, Facebook } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 
 export default function Portfolio() {
-  const projects = [
-    {
-      id: 1,
-      title: "Hospital meal management",
-      shortDescription:
-        "A comprehensive management solution with advanced inventory management, invoice registration, and analytics dashboard.",
-      fullDescription:
-        "This enterprise-level management platform was built for a client looking to modernize their ways to handle managing meals for hospital patients. The solution includes a sophisticated inventory management system that tracks stock levels across multiple warehouses, meal timetables, and supplier integration. The analytics dashboard provides real-time insights into the stock and exported items from inventory. Additional features include advanced invoice filtering and summary, and a comprehensive admin panel for high level management.",
-      images: [
-        "/placeholder.svg?height=400&width=600&text=E-commerce+Homepage",
-        "/placeholder.svg?height=400&width=600&text=Product+Catalog",
-        "/placeholder.svg?height=400&width=600&text=Shopping+Cart",
-        "/placeholder.svg?height=400&width=600&text=Admin+Dashboard",
-      ],
-      technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "Redis", "AWS"],
-      category: "Web Application",
-      status: "Completed",
-      duration: "8 months",
-      teamSize: "6 developers",
-    },
-  ]
-
   const services = [
     {
       icon: <Globe className="w-8 h-8" />,
@@ -61,15 +36,10 @@ export default function Portfolio() {
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">F</span>
-              </div>
+              <Image src="/images/farida-logo.png" alt="Farida Logo" width={32} height={32} className="rounded-full" />
               <span className="text-2xl font-bold">Farida</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="#projects" className="text-muted-foreground hover:text-foreground transition-colors">
-                Projects
-              </Link>
               <Link href="#services" className="text-muted-foreground hover:text-foreground transition-colors">
                 Services
               </Link>
@@ -80,7 +50,6 @@ export default function Portfolio() {
                 Contact
               </Link>
             </div>
-            <Button>Get Started</Button>
           </nav>
         </div>
       </header>
@@ -97,105 +66,6 @@ export default function Portfolio() {
             We create innovative software solutions that transform businesses and deliver exceptional user experiences.
             From web applications to enterprise systems, we build technology that matters.
           </p>
-          <div className="flex justify-center">
-            <Button size="lg" variant="outline" className="text-lg px-8 bg-transparent">
-              Get In Touch
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Our Projects</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Dive deep into our most impactful software solutions. Each project represents months of dedicated
-              development and innovative problem-solving.
-            </p>
-          </div>
-
-          <div className="space-y-20">
-            {projects.map((project, index) => (
-              <div
-                key={project.id}
-                className={`grid lg:grid-cols-2 gap-12 items-start ${index % 2 === 1 ? "lg:grid-flow-col-dense" : ""}`}
-              >
-                {/* Project Images */}
-                <div className={`space-y-4 ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
-                  <div className="grid grid-cols-2 gap-4">
-                    {project.images.map((image, imgIndex) => (
-                      <div
-                        key={imgIndex}
-                        className={`relative overflow-hidden rounded-lg ${imgIndex === 0 ? "col-span-2" : ""}`}
-                      >
-                        <Image
-                          src={image || "/placeholder.svg"}
-                          alt={`${project.title} Screenshot ${imgIndex + 1}`}
-                          width={600}
-                          height={400}
-                          className={`w-full object-cover hover:scale-105 transition-transform duration-300 ${imgIndex === 0 ? "h-64" : "h-32"}`}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Project Details */}
-                <div className={`space-y-6 ${index % 2 === 1 ? "lg:col-start-1 lg:row-start-1" : ""}`}>
-                  <div className="flex items-center gap-4 mb-4">
-                    <Badge variant="outline" className="text-sm">
-                      {project.category}
-                    </Badge>
-                    <Badge variant={project.status === "Completed" ? "default" : "secondary"}>{project.status}</Badge>
-                  </div>
-
-                  <h3 className="text-3xl font-bold">{project.title}</h3>
-
-                  <p className="text-lg text-muted-foreground leading-relaxed">{project.shortDescription}</p>
-
-                  {/* Project Stats */}
-                  <div className="grid grid-cols-2 gap-4 py-4">
-                    <div>
-                      <div className="text-sm text-muted-foreground">Duration</div>
-                      <div className="font-semibold">{project.duration}</div>
-                    </div>
-                  </div>
-
-                  {/* Technologies */}
-                  <div>
-                    <h4 className="font-semibold mb-3">Technologies Used</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-sm">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Expandable Description */}
-                  <details className="group">
-                    <summary className="cursor-pointer list-none">
-                      <div className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
-                        <span className="font-semibold">Read Full Project Details</span>
-                        <ArrowRight className="w-4 h-4 group-open:rotate-90 transition-transform" />
-                      </div>
-                    </summary>
-                    <div className="mt-4 p-4 bg-muted/30 rounded-lg">
-                      <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
-                    </div>
-                  </details>
-
-                  <Button size="lg" className="mt-6">
-                    View Project Details
-                    <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -246,10 +116,10 @@ export default function Portfolio() {
             </div>
             <div className="relative">
               <Image
-                src="/placeholder.svg?height=500&width=600"
-                alt="Farida Team"
+                src="/images/farida-about-team.png"
+                alt="Farida Team - Collaborative Software Development"
                 width={600}
-                height={500}
+                height={600}
                 className="rounded-lg shadow-lg"
               />
             </div>
@@ -271,21 +141,42 @@ export default function Portfolio() {
           <div className="max-w-md mx-auto">
             <Card className="text-center">
               <CardContent className="pt-6">
-                <div className="space-y-4">
-                  <div className="flex items-center justify-center space-x-3">
-                    <Mail className="w-5 h-5 text-primary" />
-                    <span className="text-lg">hello@farida.com</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-3">
-                    <Phone className="w-5 h-5 text-primary" />
-                    <span className="text-lg">+1 (555) 123-4567</span>
-                  </div>
+                <div className="flex justify-center space-x-8">
+                  <a
+                    href="mailto:faridasoftware9@gmail.com"
+                    className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors group"
+                    title="Email us"
+                  >
+                    <Mail className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href="https://linkedin.com/company/farida1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors group"
+                    title="LinkedIn"
+                  >
+                    <Users className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                  </a>
+
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61579042495962"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-primary/10 rounded-full hover:bg-primary/20 transition-colors group"
+                    title="Facebook"
+                  >
+                    <Facebook className="w-6 h-6 text-primary group-hover:scale-110 transition-transform" />
+                  </a>
                 </div>
+
                 <div className="mt-8">
-                  <Button size="lg" className="text-lg px-8">
-                    Start Your Project
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
+                  <p className="text-sm text-muted-foreground mb-4">Turning ideas into reality</p>
+                  <div className="space-y-2 text-sm text-muted-foreground">
+                    <p>📧 faridasoftware9@gmail.com</p>
+                    <p>📱 01092688458</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -298,9 +189,7 @@ export default function Portfolio() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">F</span>
-              </div>
+              <Image src="/images/farida-logo.png" alt="Farida Logo" width={32} height={32} className="rounded-full" />
               <span className="text-2xl font-bold">Farida</span>
             </div>
             <p className="text-muted-foreground">
